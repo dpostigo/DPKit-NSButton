@@ -153,11 +153,12 @@ static NSString *const SNRButtonReturnKeyEquivalent = @"\r";
 
         //        [image drawEtchedInRect2: frame];
 
-        NSColor *topColor = textColor;
-        NSColor *bottomColor = [textColor colorWithAlphaComponent: 0.9];
-        
         // TODO: Uncomment
         /*
+         
+         NSColor *topColor = textColor;
+         NSColor *bottomColor = [textColor colorWithAlphaComponent: 0.9];
+         
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor: topColor endingColor: bottomColor];
         NSShadow *outerShadow = [NSShadow shadowWithColor: [NSColor colorWithDeviceWhite: 1.0 alpha: 0.5] radius: 1 offset: NSMakeSize(0, 0)];
 
