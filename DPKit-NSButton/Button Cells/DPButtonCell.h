@@ -20,6 +20,8 @@
     NSColor *textColor;
     NSFont *textFont;
 
+    BOOL drawsEtchedImage;
+
 }
 
 @property(nonatomic) CGFloat cornerRadius;
@@ -39,6 +41,7 @@
 
 
 @property(nonatomic, strong) NSColor *disabledTextColor;
+@property(nonatomic) BOOL drawsEtchedImage;
 - (BOOL) isBlueButton;
 - (void) setupColors;
 - (void) drawButtonBezelWithFrame: (NSRect) frame inView: (NSView *) controlView;

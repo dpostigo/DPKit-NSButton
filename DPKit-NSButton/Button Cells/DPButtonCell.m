@@ -2,9 +2,9 @@
 // Created by Dani Postigo on 2/8/14.
 //
 
-#import <DPKit/NSShadow+DPKit.h>
+#import <DPKit-Utils/NSShadow+DPKit.h>
 #import "DPButtonCell.h"
-#import <DPKit/NSImage+DPKitEtched.h>
+#import <DPKit-Utils/NSImage+DPKitEtched.h>
 #import "NSCell+DPKit.h"
 
 #define SNRButtonCheckboxTextOffset               3.f
@@ -39,6 +39,8 @@ static NSString *const SNRButtonReturnKeyEquivalent = @"\r";
 @synthesize checkboxCheckmarkShadow;
 
 @synthesize disabledTextColor;
+
+@synthesize drawsEtchedImage;
 
 - (id) initWithCoder: (NSCoder *) coder {
     self = [super initWithCoder: coder];
@@ -154,18 +156,22 @@ static NSString *const SNRButtonReturnKeyEquivalent = @"\r";
         //        [image drawEtchedInRect2: frame];
 
         // TODO: Uncomment
-        /*
-         
-         NSColor *topColor = textColor;
-         NSColor *bottomColor = [textColor colorWithAlphaComponent: 0.9];
-         
-        NSGradient *gradient = [[NSGradient alloc] initWithStartingColor: topColor endingColor: bottomColor];
-        NSShadow *outerShadow = [NSShadow shadowWithColor: [NSColor colorWithDeviceWhite: 1.0 alpha: 0.5] radius: 1 offset: NSMakeSize(0, 0)];
 
-        outerShadow = self.buttonTitleShadow;
 
-        [image drawEtchedImageWithColor: textColor rect: frame gradient: gradient outerShadow: outerShadow];
-         */
+        if (drawsEtchedImage) {
+            NSColor *topColor = textColor;
+            NSColor *bottomColor = [textColor colorWithAlphaComponent: 0.9];
+
+            NSGradient *gradient = [[NSGradient alloc] initWithStartingColor: topColor endingColor: bottomColor];
+            NSShadow *outerShadow = [NSShadow shadowWithColor: [NSColor colorWithDeviceWhite: 1.0 alpha: 0.5] radius: 1 offset: NSMakeSize(0, 0)];
+
+            outerShadow = self.buttonTitleShadow;
+
+            [image drawEtchedImageWithColor: textColor rect: frame gradient: gradient outerShadow: outerShadow];
+
+        } else {
+            [super drawImage: image withFrame: frame inView: controlView];
+        }
 
     }
 }
